@@ -1,0 +1,72 @@
+/* Comentario */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body { /*Todo el body va a tener el siguiente formato*/
+    font-family: sans-serif;
+    padding: 80px 20px 0; /*Espacios entre las areas body*/
+    background-color: bisque; /*Color*/
+}
+
+header {/*Todo el header va a tener el siguiente formato*/
+    position: fixed; /*La pagina se queda quedita, no se mueve*/
+    background-color: blue; /*Color*/ 
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100% /*Espacios que van a estar alrededor del header*/
+}
+
+aside {/*Todo el aside va a tener el siguiente formato*/
+    position: fixed;
+    background-color: aquamarine;    
+    top: 80px;
+    left: 0;
+    bottom: 20px;
+    width: 20%
+}
+
+section {/*Todo el section va a tener el siguiente formato*/
+    overflow-y: scroll; /*Scrollbar en la posicion y de la pagina, vertical*/
+    position: fixed;
+    background-color: bisque;    
+    top: 80px;
+    left: 20%;
+    bottom: 20px;
+    width: 80%
+}
+
+footer {/*Todo el footer va a tener el siguiente formato*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 20px;
+    width: 100%;        
+    text-align: center;
+    background-color: yellow;
+    color: red; /*Colores de la letra*/
+}
+
+a {/*Todos los links va a tener el siguiente formato*/
+    text-decoration: none;
+    background-color: green;
+    color: white;
+}
+
+a:hover {/*Todos los links al ser seleccionados van a tener el siguiente formato*/
+    background-color: black;
+    color: white;
+}
+
+tbody tr:nth-child(odd) { /*Todas las lineas de tecto impares en el tbody van a tener el siguiente formato*/
+    background-color: blue;
+    color: white
+}
+
+tbody tr:nth-child(even) { /*Todas las lineas de tecto pares en el tbody van a tener el siguiente formato*/
+    background-color: black;
+    color: white
+}
