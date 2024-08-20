@@ -16,24 +16,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @Slf4j
-@RequestMapping("/producto")
+@RequestMapping("/producto") //(/producto)
 public class ProductoController {
-    
-    @Autowired
-    private ProductoService productoService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private ProductoService productoService;
     
+    @Autowired
+    private CategoriaService categoriaService;
+
     @GetMapping("/listado")
     public String inicio(Model model) {
         var productos = productoService.getProductos(false);
-        model.addAttribute("productos", productos);
-        model.addAttribute("totalProductos", productos.size());
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("productos", productos); //lista de productos
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("totalProductos", productos.size()); //
         return "/producto/listado";
     }
     
-    @GetMapping("/nuevo")
+     @GetMapping("/nuevo")
     public String productoNuevo(Producto producto) {
         return "/producto/modifica";
     }
@@ -69,5 +71,7 @@ public class ProductoController {
         model.addAttribute("categorias", categorias);
         model.addAttribute("producto", producto);
         return "/producto/modifica";
-    }
+    }   
+    
+    
 }

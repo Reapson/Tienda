@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org"> <!--Esto llama a los namespaces, se hacen referencias a ciertas 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"> <!--Esto llama a los namespaces, se hacen referencias a ciertas 
                                            librerias o cierta info, en el segundo link se llama la libreria thymeleaf-->
-    
+
     <head th:fragment="head"> <!--Crea un fragmento o un espacio en la pagina plantilla th-->
         <title>TechShop</title>
         <meta charset="UTF-8"/>
@@ -20,10 +21,20 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav"> <!--Menu de lista de accessos de la pagina-->
+                        <ul class="navbar-nav" sec:authorize='hasRole("ROLE_VENDEDOR")'> <!--Menu de lista de accessos de la pagina-->
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li> <!--Se referencian los links mediante el syntax del ejemplo, esto porque se esta usando thymeleaf-->
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/producto/reporte}">[[#{plantilla.reportes}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
+                            <li class="nav-item dropdown" sec:authorize='hasRole("ROLE_ADMIN")'><a class="nav-link dropdown-toggle"data-bs-toggle="dropdown" 
+                                                             href="#" 
+                                                             role="button" 
+                                                             aria-expanded="false">[[#{plantilla.pruebas}]]</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         <div class="col-md-3"> <!--Seleccion de lenguajes-->
                             <ul class="navbar-nav">                                
@@ -33,6 +44,25 @@
                         </div>
                     </div>
                 </div>
+                <ul class="navbar-nav" sec:autorized="!isAuthenticated()">
+                    <li class="nav-item px-2">
+                        <li class="nav-item text-white my-auto">
+                            <i class="fas fa-user"></i>
+                            <span sec:authentication="name">Bob</span>
+                        </li>
+                        <a class="nav-menu-link nav-link"
+                           th:href="@{/login}">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                        <li class="nav-item my-auto">
+                            <form method="post" th:action="@{/logout}">
+                                <button class="btn btn-dark">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+                            </form>
+                        </li>
+                    </li>
+                </ul>
             </nav>
             <section id="main-header" class="py-2 bg-success text-white">
                 <div class="container">
@@ -44,7 +74,7 @@
                 </div>
             </section>
         </header>
-        
+
         <footer th:fragment="footer" class="bg-info text-white mt-5 p-2">
             <div class="container">
                 <div class="col">
