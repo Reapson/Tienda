@@ -21,10 +21,10 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <ul class="navbar-nav" sec:authorize='hasRole("ROLE_VENDEDOR")'> <!--Menu de lista de accessos de la pagina-->
+                        <ul class="navbar-nav"> <!--Menu de lista de accessos de la pagina-->
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li> <!--Se referencian los links mediante el syntax del ejemplo, esto porque se esta usando thymeleaf-->
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/producto/reporte}">[[#{plantilla.reportes}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/reportes/principal}">[[#{plantilla.reportes}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                             <li class="nav-item dropdown" sec:authorize='hasRole("ROLE_ADMIN")'><a class="nav-link dropdown-toggle"data-bs-toggle="dropdown" 
                                                              href="#" 
@@ -33,6 +33,7 @@
                                 <ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
                                     <li><a class="dropdown-item" th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/carrito/listado}">[[#{plantilla.carrito}]]</a></li>
                                 </ul>
                             </li>
                         </ul>
